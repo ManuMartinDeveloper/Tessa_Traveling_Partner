@@ -15,6 +15,12 @@ def generate_response(user_input):
 #       response += chunk.choices[0].delta.content or ""
   return completion['messages'][-1].content
 
+st.set_page_config(
+    page_title="Tessa - Travel Booking Assistant",
+    page_icon="✈️",
+    layout="wide",
+)
+
 st.title("Tessa - Your Travel Booking Assistant ✈️")
 st.subheader("I can help you search flights and hotels effortlessly!")
 
