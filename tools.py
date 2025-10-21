@@ -92,9 +92,19 @@ def search_hotels_by_area(place_name: str = None,latitude: float = None, longitu
     Searches for available hotel offers within a specific radius of a geographic coordinate or place name.
     Use this when a user wants to find hotels near a specific landmark or address.
     """
-    if not longitude and not latitude and place_name:
-        _get_geocoordinates(place_name)
-        latitude, longitude = _get_geocoordinates(place_name)
+    if place_name and (longitude is None and latitude is None):
+        print(f"📍 Geocoding place name: {place_name}...")
+        coordinates = _get_geocoordinates(place_name)
+        if coordinates:
+            latitude, longitude = coordinates
+            print(f"Geocoding successful: ({latitude}, {longitude})")
+        else:
+            # 4. Return a clear error message if geocoding failed
+            print(f"Geocoding failed for: {place_name}")
+            return f"Error: Could not find the coordinates for the location '{place_name}'. Please try a different or more specific landmark."
+    
+    if latitude is None or longitude is None:
+        return "Error: Cannot search for hotels without a valid location. Please provide a place_name or valid latitude/longitude."
 
     print(f"🏨 Searching for hotels near ({latitude}, {longitude}) within {radius}KM...")
     return amadeus_client.find_hotels_by_area(latitude, longitude, radius)
