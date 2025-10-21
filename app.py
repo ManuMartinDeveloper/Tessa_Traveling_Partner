@@ -38,7 +38,7 @@ with footer_placeholder:
     st.markdown(
         """
         <div style="text-align: right; font-size: 12px;">
-            © 2024 Manu Martin | All Rights Reserved
+            © 2025 Manu Martin | All Rights Reserved
         </div>
         """,
         unsafe_allow_html=True,
