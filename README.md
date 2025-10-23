@@ -59,3 +59,14 @@ This project is a **conversational travel agent** built in Python. It uses AI to
 7.  The Supervisor LLM takes the tool results and conversation history, formats a nice answer.
 8.  The agent sends the final response back to `app.py`.
 9.  Streamlit displays the response to the user.
+
+
+### Output Screenshots
+Finding Hotels near Christ University, Bengaluru
+<img width="1713" height="976" alt="image" src="https://github.com/user-attachments/assets/6bf003ce-02ff-4f85-8c3a-dd62fe44d18a" />
+
+Finding Hotels in Kolkata
+<img width="1713" height="976" alt="image" src="https://github.com/user-attachments/assets/1f2b0e70-31dd-43e3-ae64-a158a2ea3ccc" />
+
+Finding Flights from Chennai to Dubai on 30th Oct 2025
+<img width="1713" height="976" alt="image" src="https://github.com/user-attachments/assets/29ae50c4-1f3c-43e8-9059-86800de94bf2" />
