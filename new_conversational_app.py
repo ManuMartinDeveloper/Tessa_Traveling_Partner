@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from llm_graph import create_travel_agent
+from llm_graph_update import create_travel_agent
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, AIMessage
 load_dotenv()
@@ -41,12 +41,36 @@ if user_input:
     response_data = st.session_state.agent.invoke({"messages": st.session_state.messages})
     
     # Get the final AI response
+    # response = response_data['messages'][-1].content
     response = response_data['messages'][-1]
+    reply = ""
+    try:
+        print("Response content type:", type(response.content))
+        if isinstance(response.content, str):
+            print("String response detected")
+            # Add AI response to state and display it
+            st.session_state.messages.append(response)
+            reply = response.content
+            
+
+        elif response.content[0].get("type")=="text":
+            print("Text response detected")
+            reply = response.content[0].get("text")
+            response.content = response.content[0].get("text")
+            st.session_state.messages.append(response)
+            
+            
     
-    # Add AI response to state and display it
-    st.session_state.messages.append(response)
-    st.chat_message("assistant").write(response.content)
+    except:
+        pass
+
+    print("Response:", response.content, "\n-------------------------\n")
+    print("Full response data:", response_data, "\n=========================\n")
+    print("reply:", reply, "\n*************************\n")
+    st.chat_message("assistant").write(reply)
     st.markdown("---")  # Add a separator for clarity
+
+    
 
 
 footer_placeholder = st.empty()

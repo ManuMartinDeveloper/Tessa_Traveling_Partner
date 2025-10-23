@@ -6,7 +6,6 @@ from langchain_core.messages import HumanMessage
 load_dotenv()
 
 def generate_response(user_input):
-  """Fetches user input, interacts with Groq API, and returns the generated response."""
   app = create_travel_agent()
 
   completion = app.invoke({"messages": [HumanMessage(content=user_input) ]})
